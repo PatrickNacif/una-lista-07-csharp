@@ -1,0 +1,46 @@
+    int[] numeros = { 1, 100, 30, 50, 11, 13, 5, 7, 78 };
+
+    Console.WriteLine("Numeros iniciais:");
+    ImprimirVetor(numeros);
+
+    ShellSort(numeros);
+
+    Console.WriteLine("\nNumeros ordenado :");
+    ImprimirVetor(numeros);
+
+    Console.ReadLine();
+}
+
+static void ShellSort(int[] numeros)
+{
+    int n = numeros.Length;
+    int gap = n / 2;
+
+    while (gap > 0)
+    {
+        for (int i = gap; i < n; i++)
+        {
+            int temp = numeros[i];
+            int j = i;
+
+            while (j >= gap && numeros[j - gap] > temp)
+            {
+                numeros[j] = numeros[j - gap];
+                j -= gap;
+            }
+
+            numeros[j] = temp;
+        }
+
+        gap /= 2;
+    }
+}
+
+static void ImprimirVetor(int[] vetor)
+{
+    foreach (int elemento in vetor)
+    {
+        Console.Write(elemento + " ");
+    }
+    Console.WriteLine();
+}
